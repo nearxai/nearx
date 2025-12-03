@@ -24,6 +24,7 @@
   a{text-decoration:none;color:inherit}
   .wrap{max-width:var(--max-w);margin:18px auto;padding:18px}
 
+  /* HEADER */
   header{display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:12px}
   .logo{
@@ -94,10 +95,15 @@
     display:flex;justify-content:space-between;
   }
 
-  /* MODAL */
+  /* MODALS */
   .modal-backdrop{
-    position:fixed;inset:0;background:rgba(0,0,0,0.45);
-    display:none;align-items:center;justify-content:center;z-index:200;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    display:none; /* DEFAULT hidden */
+    align-items:center;
+    justify-content:center;
+    z-index:200;
   }
   .modal{
     width:95%;max-width:860px;background:#fff;padding:18px;border-radius:14px;
@@ -115,7 +121,7 @@
     width:100%;height:110px;object-fit:cover;border-radius:8px;
   }
 
-  /* MERCHANT FORM */
+  /* Form Inputs */
   .form-input{
     padding:10px;border:1px solid #ddd;border-radius:10px;width:100%;margin-top:8px;
   }
@@ -171,8 +177,8 @@
       <div id="cartItems">No items</div>
       <div class="cart-row"><strong>Total</strong><strong id="cartTotal">₹0</strong></div>
 
-      <input id="custName" placeholder="Your Name" style="margin-top:10px" class="form-input">
-      <input id="custPhone" placeholder="WhatsApp Number" style="margin-top:10px" class="form-input">
+      <input id="custName" placeholder="Your Name" class="form-input">
+      <input id="custPhone" placeholder="WhatsApp Number" class="form-input">
 
       <div style="display:flex;gap:8px;margin-top:10px">
         <button id="clearCart" style="flex:1">Clear</button>
@@ -198,11 +204,11 @@
   </div>
 </div>
 
-<!-- MERCHANT FORM MODAL -->
-<div class="modal-backdrop" id="merchantModal">
+<!-- MERCHANT FORM MODAL (fixed) -->
+<div class="modal-backdrop" id="merchantModal" style="display:none;">
   <div class="modal">
     <h3>List Your Shop on NearX</h3>
-    <p class="meta">We will create your shop ID & product sheet.</p>
+    <p class="meta">We will create your Shop ID & Product Sheet.</p>
 
     <form id="merchantForm" style="display:grid;gap:12px;margin-top:10px;">
       <input name="shop_name" class="form-input" placeholder="Shop Name" required>
@@ -221,7 +227,7 @@
 
       <textarea name="notes" class="form-input" placeholder="Short description"></textarea>
 
-      <div style="display:flex;gap:10px;margin-top:10px;">
+      <div style="display:flex;gap:10px;">
         <button type="button" onclick="hideModal('merchantModal')" class="form-input" style="background:#eee">
           Cancel
         </button>
@@ -269,7 +275,6 @@ const demoData = {
 let stores = demoData.stores;
 let products = demoData.products;
 let categories = demoData.categories;
-let cart = [];
 
 /* UI RENDERING */
 function loadUI(){
@@ -362,7 +367,7 @@ function openStore(id){
   showModal("modalBackdrop");
 }
 
-/* CART OPERATIONS */
+/* MODAL HELPERS */
 function showModal(id){document.getElementById(id).style.display="flex";}
 function hideModal(id){document.getElementById(id).style.display="none";}
 
