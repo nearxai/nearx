@@ -1,199 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NearX API Access</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
-
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>NearX API Access</title>
 <style>
-  body {
-    margin: 0;
-    font-family: Inter, sans-serif;
-    background: #f6f7fb;
-    color: #111;
-  }
-
-  .wrap {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-  }
-
-  /* HEADER */
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #fff;
-    padding: 14px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  }
-
-  .logo-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .logo {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg,#246BFD,#6A11CB);
-    color: #fff;
-    font-weight: 800;
-    font-size: 18px;
-  }
-
-  /* HERO */
-  .hero {
-    background: linear-gradient(135deg,#246BFD,#6A11CB);
-    color: #fff;
-    padding: 30px;
-    border-radius: 20px;
-    margin-top: 20px;
-  }
-
-  .hero h1 {
-    margin: 0 0 10px;
-  }
-
-  /* FORM BOX */
-  .box {
-    background: #fff;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-  }
-
-  input, textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    font-size: 15px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-  }
-
-  button {
-    margin-top: 12px;
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg,#246BFD,#6A11CB);
-    border: 0;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  footer {
-    text-align: center;
-    margin-top: 30px;
-    color: #777;
-    padding-bottom: 20px;
-  }
+  body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto;background:#f6f7fb;color:#111}
+  .wrap{max-width:900px;margin:20px auto;padding:20px}
+  header{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:14px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05)}
+  .logo{width:42px;height:42px;background:linear-gradient(135deg,#246BFD,#6A11CB);border-radius:10px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .hero{background:linear-gradient(135deg,#246BFD,#6A11CB);color:#fff;padding:22px;border-radius:12px;margin-top:18px}
+  .box{background:#fff;padding:18px;border-radius:12px;margin-top:18px;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+  input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin-top:10px}
+  button{margin-top:12px;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,#246BFD,#6A11CB);color:#fff;font-weight:700;width:100%}
+  footer{text-align:center;margin-top:30px;color:#777}
 </style>
 </head>
-
 <body>
 <div class="wrap">
+  <header><div style="display:flex;gap:12px;align-items:center"><div class="logo">NX</div><div><strong>NearX</strong><br><small style="color:#666">API Platform</small></div></div><a href="index.html" style="color:#246BFD;font-weight:700">Home</a></header>
 
-<header>
-  <div class="logo-box">
-    <div class="logo">NX</div>
-    <div>
-      <strong>NearX</strong><br>
-      <small style="color:#666">API Platform</small>
-    </div>
+  <div class="hero"><h2 style="margin:0">NearX API Access</h2><p style="margin:6px 0 0">Integrate store listings, catalog data, CRM automation & WhatsApp flows into your apps.</p></div>
+
+  <div class="box">
+    <h3>Request API Access</h3>
+    <p style="color:#666">Fill this form to receive API Key + Documentation.</p>
+    <form id="apiForm">
+      <input type="hidden" name="action" value="api_request">
+      <input name="business" placeholder="Business / Developer Name" required>
+      <input name="email" placeholder="Email Address" required>
+      <input name="phone" placeholder="WhatsApp Number (optional)">
+      <textarea name="usecase" placeholder="Describe your use case" rows="4" required></textarea>
+      <button type="submit">Submit Request</button>
+      <div id="msg" style="margin-top:10px;font-weight:700;display:none"></div>
+    </form>
   </div>
 
-  <a href="index.html"
-     style="color:#246BFD; font-weight:600; text-decoration:none;">
-     Home
-  </a>
-</header>
-
-<!-- HERO -->
-<div class="hero">
-  <h1>NearX API Access</h1>
-  <p>Integrate store listings, catalog data, CRM automation & WhatsApp flows into your applications.</p>
+  <footer>© <span id="year"></span> NearX — API Access</footer>
 </div>
-
-<!-- FORM BOX -->
-<div class="box">
-  <h2>Request API Access</h2>
-  <p>Fill this form to receive an API Key + Developer Documentation.</p>
-
-  <form id="apiForm">
-
-    <!-- Backend identifier -->
-    <input type="hidden" name="action" value="api_request">
-
-    <input name="business" placeholder="Business / Developer Name" required>
-    <input name="email" placeholder="Email Address" required>
-    <input name="phone" placeholder="WhatsApp Number (optional)">
-    <textarea name="usecase" placeholder="Describe your use case (Required)" rows="4" required></textarea>
-
-    <button type="submit">Submit Request</button>
-
-    <p id="msg"
-       style="margin-top:10px; font-weight:600; display:none;"></p>
-  </form>
-</div>
-
-<footer>
-  © 2025 NearX — API Access
-</footer>
 
 <script>
-/* 🔗 Your Google Apps Script Web App URL */
-const API_ENDPOINT = "REPLACE_WITH_YOUR_GOOGLE_APPS_SCRIPT_URL";
-
-/* Form submission logic */
+document.getElementById("year").innerText = new Date().getFullYear();
+const API_ENDPOINT = "https://script.google.com/macros/s/AKfycbxtQlUjFOnWCf-5cx-yt3loLom-uYY-63mMrHFe7X0rMsSwsAeateCpuA32Vja5P-44/exec?action=api_request";
 document.getElementById("apiForm").onsubmit = async function(e){
   e.preventDefault();
-
-  const msgBox = document.getElementById("msg");
-  msgBox.style.display = "none";
-
-  // Collect form data
-  const form = new FormData(e.target);
-  let payload = {};
-  for (const [key, value] of form.entries()) {
-    payload[key] = value;
-  }
-
-  // If Apps Script URL not configured
-  if (!API_ENDPOINT.includes("https://")) {
-    msgBox.innerText = "API backend not connected — configure Apps Script URL.";
+  const msgBox = document.getElementById("msg"); msgBox.style.display = "none";
+  const form = new FormData(e.target); let payload = {};
+  for(const [k,v] of form.entries()) payload[k] = v;
+  payload.timestamp = new Date().toISOString();
+  try{
+    const res = await fetch(API_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    const json = await res.json();
+    msgBox.style.color = json && json.ok ? "green" : "black";
+    msgBox.innerText = (json && json.ok) ? "Request submitted. We'll email API access." : "Request submitted.";
+  }catch(err){
     msgBox.style.color = "red";
-    msgBox.style.display = "block";
-    return;
+    msgBox.innerText = "Submission failed (offline). We'll retry later.";
   }
-
-  // Send request to backend
-  await fetch(API_ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type":"application/json" },
-    body: JSON.stringify(payload)
-  });
-
-  // Success message
-  msgBox.innerText = "Request submitted successfully. We will contact you shortly.";
-  msgBox.style.color = "green";
   msgBox.style.display = "block";
-
   e.target.reset();
 };
 </script>
-
-</div>
 </body>
 </html>
