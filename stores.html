@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -108,7 +108,7 @@
 
       <div style="display:flex;gap:10px">
         <button type="button" onclick="hideModal('merchantModal')" class="form-input" style="background:#eee">Cancel</button>
-        <button class="form-input" style="background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;border:0">Submit</button>
+        <button type="submit" class="form-input" style="background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;border:0">Submit</button>
       </div>
 
       <div id="merchantMsg" style="display:none;color:green;font-weight:700;margin-top:10px"></div>
@@ -117,10 +117,10 @@
 </div>
 
 <script>
-/* ---------- config ---------- */
+/* ---------- config (update if Apps Script URL changes) ---------- */
 const APPS_SCRIPT_BASE = "https://script.google.com/macros/s/AKfycbxtQlUjFOnWCf-5cx-yt3loLom-uYY-63mMrHFe7X0rMsSwsAeateCpuA32Vja5P-44/exec";
 const DATA_URL = APPS_SCRIPT_BASE + "?action=get_all";           // returns {stores, products, categories}
-const MERCHANT_FORM_URL = APPS_SCRIPT_BASE + "?action=merchant"; // accepts POST JSON {shop_name,...}
+const MERCHANT_FORM_URL = APPS_SCRIPT_BASE; // we'll POST { action:"merchant", ... }
 
 /* ---------- demo fallback + UI ---------- */
 const iconMap = {
@@ -130,7 +130,7 @@ const iconMap = {
   Pharmacy:"https://cdn-icons-png.flaticon.com/512/2965/2965567.png",
   Electronics:"https://cdn-icons-png.flaticon.com/512/1048/1048949.png",
   Fashion:"https://cdn-icons-png.flaticon.com/512/892/892458.png",
-}
+};
 
 const demo = {
   stores:[
@@ -143,12 +143,12 @@ const demo = {
     {shop_id:"S002",product:"Chocolate Cake",price:350,image:"https://via.placeholder.com/200"}
   ],
   categories:["Grocery","Bakery","Restaurant","Pharmacy","Fashion"]
-}
+};
 
 let stores = [], products = [], categories = [], cart = [], selectedStoreId = null;
-
 document.getElementById("year").innerText = new Date().getFullYear();
 
+/* ---------- load data (live) ---------- */
 async function loadData(){
   try{
     const res = await fetch(DATA_URL);
@@ -167,12 +167,12 @@ async function loadData(){
   initUI();
 }
 
+/* ---------- UI init ---------- */
 function initUI(){
   populateAreas();
   populateCategories();
   renderStores(stores);
 }
-
 function populateAreas(){
   const area = document.getElementById("area");
   area.innerHTML = "<option value=''>All</option>";
@@ -180,7 +180,6 @@ function populateAreas(){
     const opt = document.createElement("option"); opt.value = a; opt.textContent = a; area.appendChild(opt);
   });
 }
-
 function populateCategories(){
   const container = document.getElementById("categories"); container.innerHTML = "";
   categories.forEach(c=>{
@@ -189,7 +188,6 @@ function populateCategories(){
     container.appendChild(d);
   });
 }
-
 function renderStores(list){
   const grid = document.getElementById("storesGrid"); grid.innerHTML = "";
   if(!list.length){ grid.innerHTML = "<div style='color:var(--muted)'>No stores found</div>"; return; }
@@ -200,6 +198,7 @@ function renderStores(list){
   });
 }
 
+/* ---------- search ---------- */
 function searchStores(){
   const q = (document.getElementById("q").value||"").toLowerCase();
   const area = document.getElementById("area").value;
@@ -213,24 +212,32 @@ function searchStores(){
 document.getElementById("searchBtn").onclick = searchStores;
 document.getElementById("q").addEventListener("keydown",(e)=>{ if(e.key==="Enter") searchStores(); });
 
+/* ---------- open store / products ---------- */
 function openStore(id){
   selectedStoreId = id;
-  const s = stores.find(x=>x.id===id);
-  document.getElementById("modalTitle").innerText = s.name;
+  const s = stores.find(x=>x.id===id) || {};
+  document.getElementById("modalTitle").innerText = s.name || 'Store';
   document.getElementById("modalDesc").innerText = s.desc || "";
   const grid = document.getElementById("prodGrid"); grid.innerHTML = "";
   const list = products.filter(p=>p.shop_id === id);
   if(!list.length){ grid.innerHTML = "<div style='color:var(--muted)'>No products added yet</div>"; }
   list.forEach(p=>{
     const div = document.createElement("div"); div.className = "prod";
-    div.innerHTML = `<img src="${p.image}"><div style="font-weight:700;margin-top:8px">${p.product}</div><div class="meta">₹${p.price}</div><div style="margin-top:8px;display:flex;gap:8px"><input type="number" min="1" value="1" id="qty-${encodeURIComponent(p.product)}" style="width:70px;padding:6px;border-radius:8px;border:1px solid #eee"><button class="btn btn-primary" onclick="addToCart('${p.product}',${p.price})">Add</button></div>`;
+    const safeId = encodeURIComponent(p.product).replace(/%/g,'_');
+    div.innerHTML = `<img src="${p.image}"><div style="font-weight:700;margin-top:8px">${p.product}</div><div class="meta">₹${p.price}</div>
+      <div style="margin-top:8px;display:flex;gap:8px">
+        <input type="number" min="1" value="1" id="qty-${safeId}" style="width:70px;padding:6px;border-radius:8px;border:1px solid #eee">
+        <button class="btn btn-primary" onclick="addToCart('${p.product}',${p.price})">Add</button>
+      </div>`;
     grid.appendChild(div);
   });
   showModal('modalBackdrop');
 }
 
+/* ---------- cart ---------- */
 function addToCart(product, price){
-  const qtyInput = document.querySelector(`#qty-${encodeURIComponent(product)}`) || { value: 1 };
+  const safeId = encodeURIComponent(product).replace(/%/g,'_');
+  const qtyInput = document.querySelector(`#qty-${safeId}`) || { value: 1 };
   const qty = Number(qtyInput.value || 1);
   const item = { product, price, qty, shop_id: selectedStoreId };
   if(cart.length && cart[0].shop_id !== item.shop_id){
@@ -242,7 +249,6 @@ function addToCart(product, price){
   renderCart();
   alert("Added to cart");
 }
-
 function renderCart(){
   const cdiv = document.getElementById("cartItems"); cdiv.innerHTML = "";
   if(!cart.length){ cdiv.innerText = "No items"; document.getElementById("cartTotal").innerText = "₹0"; return; }
@@ -255,7 +261,6 @@ function renderCart(){
   });
   document.getElementById("cartTotal").innerText = "₹" + total;
 }
-
 function removeItem(i){ cart.splice(i,1); renderCart(); }
 document.getElementById("clearCart").onclick = ()=>{ cart=[]; renderCart(); };
 
@@ -273,19 +278,20 @@ document.getElementById("checkoutBtn").onclick = ()=>{
   window.open(`https://wa.me/${merchant}?text=${encodeURIComponent(msg)}`, "_blank");
 };
 
-/* merchant form submission -> Apps Script */
+/* ---------- merchant form (POST to Apps Script) ---------- */
 document.getElementById("merchantJoinBtn").onclick = ()=> showModal("merchantModal");
 document.getElementById("merchantForm").onsubmit = async (e)=>{
   e.preventDefault();
   const form = new FormData(e.target);
-  const data = {};
+  const data = { action: "merchant" };
   for(const [k,v] of form.entries()) data[k] = v;
-  // add timestamp
   data.timestamp = new Date().toISOString();
+
   try{
-    const res = await fetch(MERCHANT_FORM_URL, { method:'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+    const res = await fetch(MERCHANT_FORM_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
     const json = await res.json();
-    document.getElementById("merchantMsg").innerText = json && json.ok ? "Request submitted! We'll create your shop ID." : "Request submitted!";
+    if(json && json.ok) document.getElementById("merchantMsg").innerText = "Request submitted! We'll create your shop ID.";
+    else document.getElementById("merchantMsg").innerText = "Request submitted!";
   }catch(err){
     document.getElementById("merchantMsg").innerText = "Request queued (offline).";
   }
@@ -293,7 +299,7 @@ document.getElementById("merchantForm").onsubmit = async (e)=>{
   e.target.reset();
 };
 
-/* modal helpers */
+/* ---------- modal helpers ---------- */
 function showModal(id){ document.getElementById(id).style.display = "flex"; }
 function hideModal(id){ document.getElementById(id).style.display = "none"; }
 
