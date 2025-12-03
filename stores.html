@@ -159,8 +159,11 @@
 <script>
 /* -------------------- CONFIG -------------------- */
 const APPS_SCRIPT_BASE = "https://script.google.com/macros/s/AKfycbxtQlUjFOnWCf-5cx-yt3loLom-uYY-63mMrHFe7X0rMsSwsAeateCpuA32Vja5P-44/exec";
+
 const DATA_URL = APPS_SCRIPT_BASE + "?action=get_all";
-const MERCHANT_FORM_URL = APPS_SCRIPT_BASE;
+
+/* FIXED LINE — REQUIRED FOR SHEET TO UPDATE */
+const MERCHANT_FORM_URL = APPS_SCRIPT_BASE + "?action=merchant";
 
 /* -------------------- ICON MAP -------------------- */
 const iconMap = {
