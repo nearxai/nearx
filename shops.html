@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -10,7 +10,6 @@
     --max-w:1100px;
     --accent1:#246BFD;
     --accent2:#6A11CB;
-    --accent3:#FF7B00;
     --bg:#ffffff;
     --muted:#707582;
     --card:#ffffff;
@@ -23,113 +22,62 @@
     font-family:Inter,system-ui,Segoe UI,Roboto;
     background:linear-gradient(180deg,#f7f9ff,#ffffff);
     color:#0b1221;
-    -webkit-font-smoothing:antialiased;
   }
-  a{text-decoration:none;color:inherit}
   .wrap{max-width:var(--max-w);margin:18px auto;padding:18px}
-
-  /* HEADER */
   header{display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;align-items:center;gap:12px}
   .logo{
     width:52px;height:52px;border-radius:12px;
     background:linear-gradient(135deg,var(--accent1),var(--accent2));
     display:flex;align-items:center;justify-content:center;
     color:#fff;font-weight:800;font-size:22px;
   }
-  h1{margin:0;font-size:20px}
-  .tag{color:var(--muted);font-size:13px;margin-top:4px}
-
-  /* HERO */
+  .tag{color:var(--muted);font-size:13px}
   .hero{
-    background:linear-gradient(135deg,rgba(36,107,253,0.95),rgba(106,17,203,0.95));
+    background:linear-gradient(135deg,#246BFD,#6A11CB);
     color:#fff;padding:28px;border-radius:22px;
-    box-shadow:var(--shadow);
-    display:flex;gap:18px;align-items:center;justify-content:space-between;
-    margin-top:16px;
+    box-shadow:var(--shadow);display:flex;
+    gap:18px;justify-content:space-between;
   }
-  .hero-left{max-width:68%}
-  .hero h2{margin:0;font-size:26px;font-weight:800}
-  .hero p{opacity:.95;margin-top:6px}
-
   .searchbar{
-    display:flex;gap:10px;background:rgba(255,255,255,0.12);
+    display:flex;gap:10px;background:rgba(255,255,255,0.15);
     padding:8px;border-radius:12px;margin-top:10px;
   }
   .searchbar input{
-    flex:1;padding:12px;border:0;background:transparent;color:#fff;font-size:15px;
+    flex:1;padding:12px;border:0;background:transparent;color:#fff;
   }
-  .searchbar select{
-    padding:10px;border:0;background:transparent;color:#fff;font-weight:700;
-    border-radius:10px;
+  .cats{
+    display:flex;gap:10px;overflow:auto;margin-top:16px;
   }
-  .searchbar button{
-    background:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:700;
-  }
-
-  /* CATEGORY LIST */
-  .cats{display:flex;gap:10px;overflow:auto;margin-top:14px}
   .cat{
-    min-width:110px;background:#fff;padding:12px;border-radius:14px;
-    display:flex;flex-direction:column;align-items:center;gap:8px;
-    box-shadow:var(--shadow);cursor:pointer;
+    min-width:110px;padding:12px;background:#fff;
+    border-radius:14px;box-shadow:var(--shadow);
+    text-align:center;cursor:pointer;
   }
-  .cat img{width:44px;height:44px;border-radius:10px}
-
-  /* MAIN GRID */
   main{display:flex;gap:22px;margin-top:20px}
-  .left{flex:1}
-  .right{width:360px}
-
-  .grid{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-    gap:16px;
-  }
   .store-card{
-    background:#fff;padding:14px;border-radius:18px;box-shadow:var(--shadow);
-    display:flex;gap:12px;
+    background:#fff;border-radius:18px;box-shadow:var(--shadow);
+    padding:14px;display:flex;gap:12px;
   }
-  .thumb{width:86px;height:86px;border-radius:12px;object-fit:cover}
-  .meta{font-size:13px;color:var(--muted)}
-
-  .btn{
-    padding:8px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:700;
-  }
-  .btn-ghost{background:transparent;border:2px solid rgba(10,10,30,0.06)}
-  .btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff}
-
-  /* CART */
+  .thumb{width:82px;height:82px;border-radius:12px;object-fit:cover}
   .cart{
     background:#fff;padding:14px;border-radius:16px;
     box-shadow:var(--shadow);position:sticky;top:20px;
   }
   .cart-row{
-    padding:8px 0;border-bottom:1px dashed #eee;
+    border-bottom:1px dashed #ddd;padding:8px 0;
     display:flex;justify-content:space-between;
   }
-
-  /* MODAL */
   .modal-backdrop{
-    position:fixed;inset:0;background:rgba(0,0,0,0.45);
-    display:none;align-items:center;justify-content:center;
-    z-index:200;
+    position:fixed;inset:0;background:rgba(0,0,0,0.55);
+    display:none;align-items:center;justify-content:center;z-index:200;
   }
   .modal{
-    width:95%;max-width:860px;background:#fff;padding:18px;border-radius:14px;
-    box-shadow:0 30px 60px rgba(10,10,40,0.3);
+    width:95%;max-width:840px;background:#fff;
+    padding:18px;border-radius:16px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
   }
-  .prod-grid{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-    gap:12px;margin-top:12px;
-  }
-  .prod{
-    padding:10px;border-radius:12px;border:1px solid #f1f4fb;
-  }
-  .prod img{width:100%;height:110px;object-fit:cover;border-radius:8px}
-
-  @media(max-width:980px){
+  @media(max-width:900px){
     main{flex-direction:column}
-    .right{width:100%;position:relative}
   }
 </style>
 </head>
@@ -138,10 +86,10 @@
 <div class="wrap">
 
 <header>
-  <div class="brand">
+  <div style="display:flex;align-items:center;gap:12px">
     <div class="logo">NX</div>
     <div>
-      <h1>NearX Stores</h1>
+      <h2 style="margin:0">NearX Stores</h2>
       <div class="tag">Everything near you — order on WhatsApp</div>
     </div>
   </div>
@@ -153,93 +101,90 @@
   </div>
 </header>
 
+
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <h2>Find stores, compare prices & order on WhatsApp</h2>
-    <p>Local search that actually works — merchant-updated product lists.</p>
+  <div>
+    <h2>Find stores, compare prices & order instantly</h2>
+    <p>Updated directly by merchants — reliable, fast & local.</p>
 
     <div class="searchbar">
-      <input id="q" placeholder="Search — sugar, rice, bakery, etc.">
+      <input id="q" placeholder="Search: sugar, rice, bakery...">
       <select id="area"></select>
       <button id="searchBtn">Search</button>
     </div>
-
     <div class="cats" id="categories"></div>
   </div>
 </section>
 
+
 <main>
 
-  <div class="left">
+  <!-- STORES LIST -->
+  <div style="flex:1">
     <h3>Nearby Stores</h3>
-    <div class="grid" id="storesGrid"></div>
+    <div id="storesGrid"></div>
   </div>
 
-  <aside class="right">
+  <!-- CART -->
+  <aside style="width:350px">
     <div class="cart">
-      <h4>Your Cart</h4>
+      <h3>Your Cart</h3>
       <div id="cartItems">No items</div>
       <div class="cart-row"><strong>Total</strong><strong id="cartTotal">₹0</strong></div>
 
-      <input id="custName" placeholder="Your Name" style="margin-top:10px;padding:10px;border-radius:10px;border:1px solid #eee">
-      <input id="custPhone" placeholder="WhatsApp Number" style="margin-top:10px;padding:10px;border-radius:10px;border:1px solid #eee">
+      <input id="custName" placeholder="Your Name" style="margin-top:10px;padding:10px;width:100%">
+      <input id="custPhone" placeholder="WhatsApp Number" style="margin-top:10px;padding:10px;width:100%">
 
-      <div style="display:flex;gap:8px;margin-top:10px">
-        <button id="clearCart" class="btn btn-ghost">Clear</button>
-        <button id="checkoutBtn" class="btn btn-primary">Checkout on WhatsApp</button>
-      </div>
+      <button id="clearCart" style="margin-top:10px;width:100%">Clear</button>
+      <button id="checkoutBtn" style="margin-top:10px;width:100%;background:#246BFD;color:#fff;padding:12px;border-radius:10px">Checkout on WhatsApp</button>
     </div>
   </aside>
 
 </main>
 
-<footer style="margin-top:30px;text-align:center;color:var(--muted)">
-  © <span id="year"></span> NearX Stores — Powered by WhatsApp
+<footer style="text-align:center;margin-top:30px;color:#707582">
+ © <span id="year"></span> NearX Stores  
 </footer>
 
 </div>
 
+<!-- PRODUCT MODAL -->
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <h3 id="modalTitle">Store</h3>
-      <button class="btn btn-ghost" id="closeModal">Close</button>
+    <div style="display:flex;justify-content:space-between">
+      <h3 id="modalTitle"></h3>
+      <button id="closeModal">Close</button>
     </div>
-    <p id="modalDesc" style="color:var(--muted)"></p>
-    <div class="prod-grid" id="prodGrid"></div>
+    <p id="modalDesc"></p>
+    <div id="prodGrid"></div>
   </div>
 </div>
 
+<!-- MERCHANT MODAL -->
 <div class="modal-backdrop" id="merchantModal">
   <div class="modal">
-    <h3>List Your Shop on NearX</h3>
-    <p style="color:var(--muted)">We will create your shop ID & product sheet.</p>
+    <h3>List Your Shop</h3>
 
     <form id="merchantForm" style="display:grid;gap:10px">
-      <input name="shop_name" placeholder="Shop Name" required>
+      <input name="shop_name" placeholder="Shop Name">
       <input name="owner_name" placeholder="Owner Name">
-      <input name="phone" placeholder="WhatsApp Number" required>
-      <input name="area" placeholder="Area / Locality" required>
+      <input name="phone" placeholder="WhatsApp Number">
+      <input name="area" placeholder="Area / Locality">
 
-      <select name="category" required>
+      <select name="category">
         <option>Grocery</option>
         <option>Bakery</option>
         <option>Restaurant</option>
         <option>Pharmacy</option>
-        <option>Electronics</option>
-        <option>Fashion</option>
       </select>
 
-      <textarea name="notes" placeholder="Short description"></textarea>
+      <textarea name="notes" placeholder="Short Description"></textarea>
 
-      <input type="hidden" name="action" value="merchant_signup">
+      <button>Submit</button>
+      <button type="button" id="closeMerchant">Cancel</button>
 
-      <div style="display:flex;gap:10px">
-        <button type="button" class="btn btn-ghost" id="closeMerchant">Cancel</button>
-        <button class="btn btn-primary">Submit</button>
-      </div>
-
-      <div id="merchantMsg" style="display:none;color:green;font-weight:700"></div>
+      <div id="merchantMsg" style="display:none;color:green"></div>
     </form>
   </div>
 </div>
@@ -247,316 +192,160 @@
 <script>
 document.getElementById("year").innerText = new Date().getFullYear();
 
------------------------------------------------------------
-/* 🔗 CONFIG — replace later when backend ready */
------------------------------------------------------------
-const DATA_URL = "REPLACE_WITH_YOUR_DATA_ENDPOINT_OR_RAW_JSON_URL";
-const MERCHANT_FORM_URL = "https://script.google.com/macros/s/AKfycbzWG-cW2jMbgEEbDrMnlMO995nMk8wravDiQ4gGJf5BuStUm0ND5SU5i_yL6veY8FI/exec";
+
+/* CONFIG */
+const DATA_URL = "";
+const MERCHANT_FORM_URL = "";
 const OWNER_PHONE_DEFAULT = "919000810084";
 
------------------------------------------------------------
-/* DEMO DATA (works even without backend) */
------------------------------------------------------------
-const demoData = {
-  stores:[
-    {
-      id:"S001",
-      name:"Fresh Mart",
-      category:"Grocery",
-      area:"Dilsukhnagar",
-      phone:"919000810084",
-      thumb:"https://i.ibb.co/5xWt7gRM/file-00000000c66c7209aa546551ca843503-1.png",
-      desc:"Daily groceries & staples"
-    },
-    {
-      id:"S002",
-      name:"Bakers Hub",
-      category:"Bakery",
-      area:"LB Nagar",
-      phone:"919111111111",
-      thumb:"https://i.ibb.co/5xWt7gRM/file-00000000c66c7209aa546551ca843503-1.png",
-      desc:"Fresh breads & cakes"
-    }
-  ],
-  products:[
-    {shop_id:"S001",product:"Sugar 1kg",price:45,stock:30,image:"https://i.ibb.co/5xWt7gRM/file.png"},
-    {shop_id:"S001",product:"Rice 5kg",price:325,stock:12,image:"https://i.ibb.co/5xWt7gRM/file.png"},
-    {shop_id:"S002",product:"Chocolate Cake",price:350,stock:6,image:"https://i.ibb.co/5xWt7gRM/file.png"}
-  ],
-  categories:["Grocery","Bakery","Restaurant","Pharmacy","Fashion"]
+
+/* DEMO DATA */
+const demoData={
+ stores:[
+   {id:"S1",name:"Fresh Mart",area:"Dilsukhnagar",category:"Grocery",
+    desc:"Daily groceries",phone:"919000810084",
+    thumb:"https://i.ibb.co/5xWt7gRM/file-00000000c66c7209aa546551ca843503-1.png"},
+ ],
+ products:[
+   {shop_id:"S1",product:"Sugar 1kg",price:45,
+    image:"https://i.ibb.co/5xWt7gRM/file-00000000c66c7209aa546551ca843503-1.png"},
+ ],
+ categories:["Grocery","Bakery"]
 };
 
 let stores=[],products=[],categories=[];
 let cart=[];
 let selectedStoreId=null;
 
-function money(n){return "₹"+Number(n||0).toFixed(0);}
+function money(n){return "₹"+n;}
 
------------------------------------------------------------
-/* FETCH DATA */
------------------------------------------------------------
-async function loadData(){
-  if(!DATA_URL.includes("http")){
-    stores=demoData.stores;
-    products=demoData.products;
-    categories=demoData.categories;
-    initUI();
-    return;
-  }
-  try{
-    const res=await fetch(DATA_URL);
-    const json=await res.json();
-    stores=json.stores||[];
-    products=json.products||[];
-    categories=[...new Set(stores.map(s=>s.category))];
-  }catch(e){
-    stores=demoData.stores;
-    products=demoData.products;
-    categories=demoData.categories;
-  }
-  initUI();
+/* LOAD DATA */
+function loadData(){
+ stores=demoData.stores;
+ products=demoData.products;
+ categories=demoData.categories;
+ loadUI();
 }
+loadData();
 
-function initUI(){
-  loadAreas();
-  loadCategories();
-  renderStores(stores);
+function loadUI(){
+ loadAreas();
+ loadCats();
+ renderStores(stores);
 }
 
 function loadAreas(){
-  const area=document.getElementById("area");
-  area.innerHTML="";
-  area.appendChild(new Option("All Areas",""));
-  [...new Set(stores.map(s=>s.area))].forEach(a=>{
-    area.appendChild(new Option(a,a));
-  });
+ let a=document.getElementById("area");
+ a.innerHTML="<option value=''>All</option>";
+ [...new Set(stores.map(s=>s.area))].forEach(x=>{
+  a.innerHTML+=`<option>${x}</option>`;
+ });
 }
 
-function loadCategories(){
-  const cats=document.getElementById("categories");
-  cats.innerHTML="";
-  categories.forEach(c=>{
-    const div=document.createElement("div");
-    div.className="cat";
-    div.innerHTML=`<img src="https://via.placeholder.com/64?text=${c[0]}"><div>${c}</div><small>Tap to search</small>`;
-    div.onclick=()=>{
-      document.getElementById("q").value=c;
-      searchStores();
-    };
-    cats.appendChild(div);
-  });
+function loadCats(){
+ let c=document.getElementById("categories");
+ categories.forEach(k=>{
+   let d=document.createElement("div");
+   d.className="cat";
+   d.innerHTML=`${k}<br><small>Tap</small>`;
+   d.onclick=()=>{document.getElementById("q").value=k; searchStores();};
+   c.appendChild(d);
+ });
 }
 
------------------------------------------------------------
-/* STORE LISTING */
------------------------------------------------------------
-function renderStores(list){
-  const grid=document.getElementById("storesGrid");
-  grid.innerHTML="";
-  if(!list.length){
-    grid.innerHTML="<div style='color:var(--muted)'>No stores found</div>";
-    return;
-  }
-  list.forEach(s=>{
-    const div=document.createElement("div");
-    div.className="store-card";
-    div.innerHTML=`
-      <img class="thumb" src="${s.thumb}">
-      <div>
-        <h3>${s.name}</h3>
-        <div class="meta">${s.category} • ${s.area}</div>
-        <div class="meta">${s.desc||""}</div>
-        <div style="margin-top:6px;display:flex;gap:8px">
-          <button class="btn btn-ghost" onclick="openStore('${s.id}')">View</button>
-          <button class="btn btn-primary" onclick="openStore('${s.id}')">Order</button>
-        </div>
-      </div>
-    `;
-    grid.appendChild(div);
-  });
-}
-
------------------------------------------------------------
-/* SEARCH SYSTEM */
------------------------------------------------------------
 function searchStores(){
-  let q=document.getElementById("q").value.toLowerCase();
-  let area=document.getElementById("area").value;
+ let q=document.getElementById("q").value.toLowerCase();
+ let a=document.getElementById("area").value;
 
-  if(q){
-    const matched=products.filter(p=>p.product.toLowerCase().includes(q));
-    if(matched.length){
-      const ids=[...new Set(matched.map(m=>m.shop_id))];
-      const list=stores.filter(s=>ids.includes(s.id)&&(area?s.area===area:true));
-      renderStores(list);
-      return;
-    }
-  }
-  const list=stores.filter(s=>{
-    const matchQ=!q||s.name.toLowerCase().includes(q)||s.category.toLowerCase().includes(q)||(s.desc||"").toLowerCase().includes(q);
-    const matchA=!area||s.area===area;
-    return matchQ&&matchA;
-  });
-  renderStores(list);
+ let found=stores.filter(s=>
+   (!q || s.name.toLowerCase().includes(q) || s.category.toLowerCase().includes(q)) &&
+   (!a || s.area===a)
+ );
+ renderStores(found);
 }
 
 document.getElementById("searchBtn").onclick=searchStores;
-document.getElementById("q").onkeydown=e=>{if(e.key==="Enter")searchStores();};
 
------------------------------------------------------------
-/* OPEN STORE PRODUCT MODAL */
------------------------------------------------------------
+function renderStores(list){
+ let g=document.getElementById("storesGrid");
+ g.innerHTML="";
+ list.forEach(s=>{
+   let d=document.createElement("div");
+   d.className="store-card";
+   d.innerHTML=`
+    <img class="thumb" src="${s.thumb}">
+    <div>
+      <b>${s.name}</b><br>
+      <span>${s.category} • ${s.area}</span><br>
+      <button onclick="openStore('${s.id}')">View</button>
+    </div>`;
+   g.appendChild(d);
+ });
+}
+
+/* OPEN STORE MODAL */
 function openStore(id){
-  selectedStoreId=id;
-  const s=stores.find(x=>x.id===id);
-  const prodList=products.filter(p=>p.shop_id===id);
-
-  document.getElementById("modalTitle").innerText=s.name;
-  document.getElementById("modalDesc").innerText=s.desc||"";
-
-  const grid=document.getElementById("prodGrid");
-  grid.innerHTML="";
-
-  if(!prodList.length){
-    grid.innerHTML="<div style='color:var(--muted)'>No products added yet</div>";
-  } else {
-    prodList.forEach(p=>{
-      const div=document.createElement("div");
-      div.className="prod";
-      div.innerHTML=`
-        <img src="${p.image}">
-        <div>${p.product}</div>
-        <div>${money(p.price)}</div>
-        <div style="display:flex;gap:8px;margin-top:6px">
-          <input type="number" min="1" value="1" style="width:70px;padding:6px;border-radius:8px;border:1px solid #eee" id="qty-${p.product}">
-          <button class="btn btn-primary" onclick="addToCart('${p.product}',${p.price})">Add</button>
-        </div>
-      `;
-      grid.appendChild(div);
-    });
-  }
-
-  showModal("modalBackdrop");
+ selectedStoreId=id;
+ let s=stores.find(x=>x.id===id);
+ document.getElementById("modalTitle").innerText=s.name;
+ document.getElementById("modalDesc").innerText=s.desc||"";
+ let grid=document.getElementById("prodGrid");
+ grid.innerHTML="";
+ let list=products.filter(p=>p.shop_id===id);
+ list.forEach(p=>{
+  let d=document.createElement("div");
+  d.innerHTML=`
+    <img src="${p.image}" style="width:150px">
+    <div>${p.product}</div>
+    <div>${money(p.price)}</div>
+    <button onclick="addToCart('${p.product}',${p.price})">Add</button>
+  `;
+  grid.appendChild(d);
+ });
+ showModal("modalBackdrop");
 }
 
 document.getElementById("closeModal").onclick=()=>hideModal("modalBackdrop");
 
------------------------------------------------------------
-/* CART SYSTEM */
------------------------------------------------------------
+/* CART */
 function addToCart(product,price){
-  const qty=document.querySelector(`#qty-${product}`).value;
-  const item={product,price,qty:Number(qty),shop_id:selectedStoreId};
-
-  if(cart.length&&cart[0].shop_id!==item.shop_id){
-    if(!confirm("Cart has items from another shop. Clear cart?"))return;
-    cart=[];
-  }
-
-  const found=cart.find(c=>c.product===product);
-  if(found) found.qty+=item.qty;
-  else cart.push(item);
-
-  renderCart();
+ cart.push({product,price,qty:1,shop_id:selectedStoreId});
+ renderCart();
 }
 
 function renderCart(){
-  const div=document.getElementById("cartItems");
-  div.innerHTML="";
+ let c=document.getElementById("cartItems");
+ c.innerHTML="";
+ if(!cart.length){c.innerHTML="No items";return;}
 
-  if(!cart.length){
-    div.innerHTML="No items";
-    document.getElementById("cartTotal").innerText="₹0";
-    return;
-  }
+ let total=0;
+ cart.forEach(x=>{
+   total+=x.price*x.qty;
+   c.innerHTML+=`${x.product} - ${money(x.price)}<br>`;
+ });
 
-  let total=0;
-  cart.forEach((c,i)=>{
-    total+=c.price*c.qty;
-    const row=document.createElement("div");
-    row.className="cart-row";
-    row.innerHTML=`
-      <div>${c.product} x${c.qty}</div>
-      <div>${money(c.price*c.qty)} <button class="btn btn-ghost" onclick="removeItem(${i})">✕</button></div>
-    `;
-    div.appendChild(row);
-  });
-
-  document.getElementById("cartTotal").innerText=money(total);
-}
-
-function removeItem(i){
-  cart.splice(i,1);
-  renderCart();
+ document.getElementById("cartTotal").innerText=money(total);
 }
 
 document.getElementById("clearCart").onclick=()=>{cart=[];renderCart();};
 
------------------------------------------------------------
-/* CHECKOUT → WhatsApp */
------------------------------------------------------------
+/* CHECKOUT */
 document.getElementById("checkoutBtn").onclick=()=>{
-
-  if(!cart.length){
-    alert("Cart empty");
-    return;
-  }
-
-  const name=document.getElementById("custName").value.trim();
-  const phone=document.getElementById("custPhone").value.trim();
-
-  if(!name || !phone){
-    alert("Enter name & WhatsApp number");
-    return;
-  }
-
-  const store=stores.find(s=>s.id===cart[0].shop_id);
-  const merchant=store.phone||OWNER_PHONE_DEFAULT;
-
-  let msg=`Hi, I want to place an order:\n\nName: ${name}\nPhone: ${phone}\n\nItems:\n`;
-
-  cart.forEach(c=>{
-    msg+=`• ${c.product} x${c.qty} - ${money(c.price*c.qty)}\n`;
-  });
-
-  const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
-  msg+=`\nTotal: ${money(total)}\n\nStore: ${store.name}`;
-
-  window.open(`https://wa.me/${merchant}?text=${encodeURIComponent(msg)}`,"_blank");
+ if(!cart.length){alert("Cart empty");return;}
+ let n=document.getElementById("custName").value;
+ let p=document.getElementById("custPhone").value;
+ if(!n||!p){alert("Enter details");return;}
+ let m=cart.map(x=>`${x.product} - ${money(x.price)}`).join("\n");
+ let msg=`Order from ${n}\n${m}`;
+ window.open(`https://wa.me/${OWNER_PHONE_DEFAULT}?text=${encodeURIComponent(msg)}`);
 };
 
------------------------------------------------------------
-/* MERCHANT FORM */
------------------------------------------------------------
+/* MERCHANT MODAL */
 document.getElementById("merchantJoinBtn").onclick=()=>showModal("merchantModal");
 document.getElementById("closeMerchant").onclick=()=>hideModal("merchantModal");
 
-document.getElementById("merchantForm").onsubmit=async(e)=>{
-  e.preventDefault();
-
-  const form=new FormData(e.target);
-  let data={};
-  for(const [k,v] of form.entries()) data[k]=v;
-
-  const res = await fetch(MERCHANT_FORM_URL,{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify(data)
-  });
-
-  // You might want to check res.ok here for a better response
-  document.getElementById("merchantMsg").innerText="Request sent!";
-  document.getElementById("merchantMsg").style.display="block";
-  e.target.reset();
-};
-
------------------------------------------------------------
-/* MODAL HELPERS */
------------------------------------------------------------
 function showModal(id){document.getElementById(id).style.display="flex";}
 function hideModal(id){document.getElementById(id).style.display="none";}
-
-loadData();
 </script>
 
 </body>
