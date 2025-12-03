@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -77,8 +77,8 @@
       <input type="hidden" name="action" value="merchant">
       <input type="hidden" name="category" value="CRM">
 
-      <button class="btn" style="margin-top:10px">Submit Request</button>
-      <div id="msg" style="margin-top:10px;color:green;display:none;font-weight:800"></div>
+      <button id="submitBtn" class="btn" style="margin-top:10px">Submit Request</button>
+      <div id="msg" style="margin-top:10px;display:none;font-weight:800"></div>
     </form>
   </div>
 
@@ -91,24 +91,46 @@
 <script>
 document.getElementById("year").innerText = new Date().getFullYear();
 
-// The Google Apps Script URL has been inserted here
 const CRM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzWG-cW2jMbgEEbDrMnlMO995nMk8wravDiQ4gGJf5BuStUm0ND5SU5i_yL6veY8FI/exec";
 
 document.getElementById("crmForm").addEventListener("submit", async (e)=>{
   e.preventDefault();
+
+  const msg = document.getElementById("msg");
+  const btn = document.getElementById("submitBtn");
+
+  msg.style.display="none";
+  btn.innerText = "Submitting...";
+  btn.disabled = true;
+
   const form = new FormData(e.target);
   const payload = {};
   for(const [a,b] of form.entries()) payload[a]=b;
 
-  const res = await fetch(CRM_ENDPOINT,{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify(payload)
-  });
+  try {
+    const res = await fetch(CRM_ENDPOINT,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(payload)
+    });
 
-  document.getElementById("msg").innerText = "Request submitted successfully!";
-  document.getElementById("msg").style.display = "block";
-  e.target.reset();
+    if(res.ok){
+      msg.style.color="green";
+      msg.innerText = "Request submitted successfully!";
+      e.target.reset();
+    } else {
+      msg.style.color="red";
+      msg.innerText = "Submission failed. Try again.";
+    }
+
+  } catch(err){
+    msg.style.color="red";
+    msg.innerText = "Network error. Try again.";
+  }
+
+  msg.style.display = "block";
+  btn.innerText = "Submit Request";
+  btn.disabled = false;
 });
 </script>
 
