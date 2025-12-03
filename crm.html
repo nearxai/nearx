@@ -91,18 +91,14 @@
 <script>
 document.getElementById("year").innerText = new Date().getFullYear();
 
-const CRM_ENDPOINT = "REPLACE_WITH_YOUR_MERCHANT_FORM_ENDPOINT";
+// The Google Apps Script URL has been inserted here
+const CRM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzWG-cW2jMbgEEbDrMnlMO995nMk8wravDiQ4gGJf5BuStUm0ND5SU5i_yL6veY8FI/exec";
 
 document.getElementById("crmForm").addEventListener("submit", async (e)=>{
   e.preventDefault();
   const form = new FormData(e.target);
   const payload = {};
   for(const [a,b] of form.entries()) payload[a]=b;
-
-  if(CRM_ENDPOINT.includes("REPLACE_WITH")){
-    alert("CRM endpoint not configured");
-    return;
-  }
 
   const res = await fetch(CRM_ENDPOINT,{
     method:"POST",
