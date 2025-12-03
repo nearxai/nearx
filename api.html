@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NearX API Access</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
+
+<style>
+  body {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    background: #f6f7fb;
+    color: #111;
+  }
+  .wrap { max-width: 900px; margin: 20px auto; padding: 20px; }
+
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fff; padding: 14px 20px; border-radius: 12px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .logo-box {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo {
+    width: 42px; height: 42px; background: linear-gradient(135deg,#246BFD,#6A11CB);
+    color: #fff; display:flex; align-items:center; justify-content:center;
+    border-radius:10px; font-weight:800;
+  }
+  .hero {
+    background: linear-gradient(135deg,#246BFD,#6A11CB);
+    padding: 30px; border-radius: 20px; margin-top:20px; color: #fff;
+  }
+  .hero h1 { margin: 0 0 10px; }
+  .box {
+    background:#fff; padding:20px; margin-top:20px; border-radius:12px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+  }
+  input, textarea {
+    width: 100%; padding: 12px; margin-top: 10px;
+    border-radius:10px; border:1px solid #ddd; font-size:15px;
+  }
+  button {
+    margin-top: 12px; padding: 12px 20px; width: 100%;
+    border-radius:10px; font-size:16px; font-weight:600;
+    border:0; cursor:pointer; color:#fff;
+    background: linear-gradient(135deg,#246BFD,#6A11CB);
+  }
+  footer {
+    text-align:center; margin-top:30px; color:#777; padding-bottom:20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <div class="logo-box">
+    <div class="logo">NX</div>
+    <div>
+      <strong>NearX</strong><br>
+      <small style="color:#666">API Platform</small>
+    </div>
+  </div>
+  <a href="index.html" style="color:#246BFD; font-weight:600;">Home</a>
+</header>
+
+<div class="hero">
+  <h1>NearX API Access</h1>
+  <p>Integrate store listings, catalog data, CRM automation & WhatsApp flows into your apps.</p>
+</div>
+
+<div class="box">
+  <h2>Request API Access</h2>
+  <p>Fill this form to get API Key + Documentation access.</p>
+
+  <form id="apiForm">
+    <input name="business" placeholder="Business / Developer Name" required>
+    <input name="email" placeholder="Email Address" required>
+    <input name="phone" placeholder="WhatsApp Number">
+    <textarea name="usecase" placeholder="Describe your use case (Required)" rows="4" required></textarea>
+
+    <button type="submit">Submit Request</button>
+    <p id="msg" style="margin-top:10px; font-weight:600;"></p>
+  </form>
+</div>
+
+<footer>
+  © 2025 NearX — API Access
+</footer>
+
+<script>
+// TEMP until Google Sheets backend is added:
+document.getElementById("apiForm").onsubmit = function(e){
+  e.preventDefault();
+  document.getElementById("msg").innerText =
+    "API request submitted. Backend integration pending.";
+};
+</script>
+
+</div>
+</body>
+</html>
