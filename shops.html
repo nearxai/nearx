@@ -153,7 +153,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <h2>Find stores, compare prices & order on WhatsApp</h2>
@@ -169,16 +168,13 @@
   </div>
 </section>
 
-<!-- MAIN -->
 <main>
 
-  <!-- LISTINGS -->
   <div class="left">
     <h3>Nearby Stores</h3>
     <div class="grid" id="storesGrid"></div>
   </div>
 
-  <!-- CART -->
   <aside class="right">
     <div class="cart">
       <h4>Your Cart</h4>
@@ -203,7 +199,6 @@
 
 </div>
 
-<!-- PRODUCT MODAL -->
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal">
     <div style="display:flex;justify-content:space-between;align-items:center">
@@ -215,7 +210,6 @@
   </div>
 </div>
 
-<!-- MERCHANT FORM -->
 <div class="modal-backdrop" id="merchantModal">
   <div class="modal">
     <h3>List Your Shop on NearX</h3>
@@ -238,6 +232,8 @@
 
       <textarea name="notes" placeholder="Short description"></textarea>
 
+      <input type="hidden" name="action" value="merchant_signup">
+
       <div style="display:flex;gap:10px">
         <button type="button" class="btn btn-ghost" id="closeMerchant">Cancel</button>
         <button class="btn btn-primary">Submit</button>
@@ -255,7 +251,7 @@ document.getElementById("year").innerText = new Date().getFullYear();
 /* 🔗 CONFIG — replace later when backend ready */
 -----------------------------------------------------------
 const DATA_URL = "REPLACE_WITH_YOUR_DATA_ENDPOINT_OR_RAW_JSON_URL";
-const MERCHANT_FORM_URL = "REPLACE_WITH_YOUR_MERCHANT_FORM_ENDPOINT";
+const MERCHANT_FORM_URL = "https://script.google.com/macros/s/AKfycbzWG-cW2jMbgEEbDrMnlMO995nMk8wravDiQ4gGJf5BuStUm0ND5SU5i_yL6veY8FI/exec";
 const OWNER_PHONE_DEFAULT = "919000810084";
 
 -----------------------------------------------------------
@@ -534,7 +530,6 @@ document.getElementById("checkoutBtn").onclick=()=>{
 -----------------------------------------------------------
 document.getElementById("merchantJoinBtn").onclick=()=>showModal("merchantModal");
 document.getElementById("closeMerchant").onclick=()=>hideModal("merchantModal");
-document.getElementById("merchantCancel").onclick=()=>hideModal("merchantModal");
 
 document.getElementById("merchantForm").onsubmit=async(e)=>{
   e.preventDefault();
@@ -543,18 +538,13 @@ document.getElementById("merchantForm").onsubmit=async(e)=>{
   let data={};
   for(const [k,v] of form.entries()) data[k]=v;
 
-  if(!MERCHANT_FORM_URL.includes("http")){
-    document.getElementById("merchantMsg").innerText="Endpoint not configured.";
-    document.getElementById("merchantMsg").style.display="block";
-    return;
-  }
-
-  await fetch(MERCHANT_FORM_URL,{
+  const res = await fetch(MERCHANT_FORM_URL,{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(data)
   });
 
+  // You might want to check res.ok here for a better response
   document.getElementById("merchantMsg").innerText="Request sent!";
   document.getElementById("merchantMsg").style.display="block";
   e.target.reset();
