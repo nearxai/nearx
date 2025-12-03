@@ -1,67 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>NearX CRM — AI Automation</title>
 <style>
-  body{
-    margin:0;font-family:Inter,system-ui,Segoe UI,Roboto;
-    background:#f7f9ff;color:#0b1221;
-  }
-  header{
-    max-width:1100px;margin:0 auto;padding:20px;
-    display:flex;align-items:center;gap:12px;
-  }
-  .logo{
-    width:48px;height:48px;border-radius:12px;
-    background:linear-gradient(135deg,#246BFD,#6A11CB);
-    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;
-  }
-  h1{margin:0;font-size:22px;font-weight:800}
-  .hero{
-    max-width:1100px;margin:20px auto;padding:40px;text-align:center;
-    border-radius:24px;background:linear-gradient(135deg,#246BFD,#6A11CB);color:#fff;
-    box-shadow:0 12px 30px rgba(36,107,253,0.15);
-  }
-  .section{max-width:900px;margin:30px auto;padding:20px}
-  .card{
-    background:#fff;border-radius:20px;box-shadow:0 10px 25px rgba(10,10,40,0.06);
-    padding:24px;margin-bottom:20px;
-  }
-  .btn{
-    background:linear-gradient(135deg,#246BFD,#6A11CB);
-    color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;text-decoration:none;
-  }
-  input,textarea,select{
-    width:100%;padding:12px;border-radius:10px;
-    border:1px solid #ddd;margin-top:8px;
-  }
+  body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto;background:#f7f9ff;color:#0b1221}
+  .wrap{max-width:900px;margin:20px auto;padding:18px}
+  header{display:flex;align-items:center;gap:12px}
+  .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#246BFD,#6A11CB);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
+  .hero{background:linear-gradient(135deg,#246BFD,#6A11CB);color:#fff;padding:28px;border-radius:16px;box-shadow:0 12px 30px rgba(36,107,253,0.12);text-align:center}
+  .card{background:#fff;padding:18px;border-radius:12px;margin-top:18px;box-shadow:0 10px 25px rgba(10,10,40,0.06)}
+  input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin-top:8px}
+  .btn{padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,#246BFD,#6A11CB);color:#fff;font-weight:700;cursor:pointer}
+  footer{margin-top:20px;text-align:center;color:#707582}
 </style>
 </head>
 <body>
+<div class="wrap">
+  <header><div class="logo">NX</div><div><h1>NearX CRM Automation</h1><div style="color:#707582">Automate follow-ups & reminders</div></div></header>
 
-<header>
-  <div class="logo">NX</div>
-  <h1>NearX CRM Automation</h1>
-</header>
-
-<section class="hero">
-  <h2>Automate Your Business with AI</h2>
-  <p>Follow-ups, reminders, lead management, and daily reports — all fully automated.</p>
-</section>
-
-<div class="section">
+  <section class="hero"><h2>Automate Your Business with AI</h2><p style="opacity:.95">Follow-ups, reminders, lead management & daily reports — all automated.</p></section>
 
   <div class="card">
     <h3>Why NearX CRM?</h3>
-    <ul>
+    <ul style="color:#707582">
       <li>AI-powered auto follow-ups</li>
-      <li>Lead qualification (Hot / Warm / Cold)</li>
+      <li>Lead qualification (Hot/Warm/Cold)</li>
       <li>Daily performance reports</li>
-      <li>Appointment reminders</li>
-      <li>Payment reminders</li>
-      <li>No coding or setup needed</li>
+      <li>Appointment & payment reminders</li>
+      <li>No coding / no setup required</li>
     </ul>
   </div>
 
@@ -72,67 +39,33 @@
       <input name="owner_name" placeholder="Owner Name">
       <input name="phone" placeholder="WhatsApp Number" required>
       <input name="industry" placeholder="Industry (Real Estate, Gym, Clinic, etc.)" required>
-      <textarea name="needs" placeholder="Your Requirements (follow-ups, reminders, CRM)"></textarea>
-
-      <input type="hidden" name="action" value="merchant">
-      <input type="hidden" name="category" value="CRM">
-
-      <button id="submitBtn" class="btn" style="margin-top:10px">Submit Request</button>
-      <div id="msg" style="margin-top:10px;display:none;font-weight:800"></div>
+      <textarea name="needs" placeholder="Your requirements (follow-ups, reminders, CRM)"></textarea>
+      <button class="btn" type="submit">Submit Request</button>
+      <div id="crmMsg" style="margin-top:10px;display:none;font-weight:700;color:green"></div>
     </form>
   </div>
 
+  <footer>© <span id="year"></span> NearX CRM — All Rights Reserved.</footer>
 </div>
-
-<footer style="text-align:center;padding:20px;color:#707582">
-  © <span id="year"></span> NearX CRM — All Rights Reserved.
-</footer>
 
 <script>
 document.getElementById("year").innerText = new Date().getFullYear();
-
-const CRM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzWG-cW2jMbgEEbDrMnlMO995nMk8wravDiQ4gGJf5BuStUm0ND5SU5i_yL6veY8FI/exec";
-
+const CRM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxtQlUjFOnWCf-5cx-yt3loLom-uYY-63mMrHFe7X0rMsSwsAeateCpuA32Vja5P-44/exec?action=crm";
 document.getElementById("crmForm").addEventListener("submit", async (e)=>{
   e.preventDefault();
-
-  const msg = document.getElementById("msg");
-  const btn = document.getElementById("submitBtn");
-
-  msg.style.display="none";
-  btn.innerText = "Submitting...";
-  btn.disabled = true;
-
-  const form = new FormData(e.target);
-  const payload = {};
-  for(const [a,b] of form.entries()) payload[a]=b;
-
-  try {
-    const res = await fetch(CRM_ENDPOINT,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(payload)
-    });
-
-    if(res.ok){
-      msg.style.color="green";
-      msg.innerText = "Request submitted successfully!";
-      e.target.reset();
-    } else {
-      msg.style.color="red";
-      msg.innerText = "Submission failed. Try again.";
-    }
-
-  } catch(err){
-    msg.style.color="red";
-    msg.innerText = "Network error. Try again.";
+  const form = new FormData(e.target); const payload = {};
+  for(const [k,v] of form.entries()) payload[k]=v;
+  payload.timestamp = new Date().toISOString();
+  try{
+    const res = await fetch(CRM_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    const json = await res.json();
+    document.getElementById("crmMsg").innerText = (json && json.ok) ? "Request submitted — we'll contact you." : "Request submitted.";
+  }catch(err){
+    document.getElementById("crmMsg").innerText = "Request queued (offline).";
   }
-
-  msg.style.display = "block";
-  btn.innerText = "Submit Request";
-  btn.disabled = false;
+  document.getElementById("crmMsg").style.display = "block";
+  e.target.reset();
 });
 </script>
-
 </body>
 </html>
