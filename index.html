@@ -1,140 +1,65 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>NearX — Everything Near You</title>
-
+<meta name="description" content="NearX — Find stores, view products & order via WhatsApp. Local search + ordering on WhatsApp."/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>NX</text></svg>">
 <style>
-  body{
-    margin:0;
-    font-family:Inter,system-ui,Segoe UI,Roboto;
-    background:linear-gradient(180deg,#f7f9ff,#ffffff);
-    color:#0b1221;
-    -webkit-font-smoothing:antialiased;
-  }
-  header{
-    max-width:1100px;
-    margin:0 auto;
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-  .logo{
-    width:48px;height:48px;
-    border-radius:12px;
-    background:linear-gradient(135deg,#246BFD,#6A11CB);
-    color:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:800;
-    font-size:20px;
-  }
-  h1{margin:0;font-size:22px;font-weight:800}
-  .tag{color:#707582;font-size:14px;margin-top:4px}
-
-  /* HERO */
-  .hero{
-    max-width:1100px;
-    margin:20px auto;
-    padding:40px;
-    background:linear-gradient(135deg,#246BFD,#6A11CB);
-    color:#fff;
-    border-radius:24px;
-    text-align:center;
-    box-shadow:0 12px 30px rgba(36,107,253,0.15);
-  }
-  .hero h2{margin:0;font-size:32px;font-weight:800}
-  .hero p{opacity:.95;margin:10px 0 20px}
-
-  .cards{
-    max-width:1100px;
-    margin:40px auto;
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-    padding:20px;
-  }
-
-  .card{
-    flex:1;
-    min-width:300px;
-    background:#fff;
-    border-radius:20px;
-    padding:24px;
-    box-shadow:0 10px 25px rgba(10,10,40,0.06);
-  }
-  .card h3{margin-top:0;font-size:20px;font-weight:800}
-  .card p{color:#707582;line-height:1.5}
-  .btn{
-    display:inline-block;
-    background:linear-gradient(135deg,#246BFD,#6A11CB);
-    color:#fff;
-    padding:10px 20px;
-    border-radius:12px;
-    font-weight:700;
-    text-decoration:none;
-    margin-top:10px;
-  }
-  footer{
-    margin-top:40px;
-    text-align:center;
-    padding:20px;
-    color:#707582;
-  }
+  :root{--max-w:1100px;--accent1:#246BFD;--accent2:#6A11CB;--muted:#707582}
+  *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto;color:#0b1221;background:linear-gradient(180deg,#f7f9ff,#fff)}
+  .wrap{max-width:var(--max-w);margin:18px auto;padding:18px}
+  header{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
+  h1{margin:0;font-size:20px}
+  .hero{background:linear-gradient(135deg,#246BFD,#6A11CB);color:#fff;padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(10,10,40,0.06);text-align:center}
+  .cards{display:flex;gap:16px;margin-top:22px;flex-wrap:wrap;justify-content:center}
+  .card{min-width:260px;background:#fff;border-radius:16px;padding:18px;box-shadow:0 12px 30px rgba(10,10,40,0.04)}
+  .btn{display:inline-block;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:700}
+  footer{margin-top:40px;text-align:center;color:var(--muted)}
 </style>
 </head>
 <body>
+<div class="wrap">
+  <header>
+    <div class="brand"><div class="logo">NX</div><div><h1>NearX</h1><small style="color:var(--muted)">Everything near you — order on WhatsApp</small></div></div>
+    <nav style="display:flex;gap:10px;align-items:center">
+      <a href="stores.html" class="btn" style="background:transparent;color:var(--accent1);border:1px solid rgba(36,107,253,0.12);padding:8px 12px">Open Stores</a>
+      <a href="crm.html" style="color:var(--muted);text-decoration:none">CRM</a>
+      <a href="api-request.html" style="color:var(--muted);text-decoration:none">API</a>
+    </nav>
+  </header>
 
-<header>
-  <div style="display:flex;align-items:center;gap:12px">
-    <div class="logo">NX</div>
-    <div>
-      <h1>NearX</h1>
-      <div class="tag">Everything near you — simplified</div>
+  <section class="hero">
+    <h2 style="margin:0 0 8px">Grow Your Business with NearX</h2>
+    <p style="opacity:.95;margin:0">Local Store Listing + AI CRM Automation + API Access — all in one platform.</p>
+  </section>
+
+  <div class="cards">
+    <div class="card">
+      <h3>List Your Store</h3>
+      <p style="color:var(--muted)">Add your shop, show products, and get customer orders on WhatsApp instantly.</p>
+      <a class="btn" href="stores.html#merchant">Go to Store Module</a>
+    </div>
+
+    <div class="card">
+      <h3>AI CRM Automation</h3>
+      <p style="color:var(--muted)">Automated follow-ups, reminders, lead management & daily reports.</p>
+      <a class="btn" href="crm.html">Go to CRM Module</a>
+    </div>
+
+    <div class="card">
+      <h3>Request API Access</h3>
+      <p style="color:var(--muted)">Integrate NearX data and functions into your apps.</p>
+      <a class="btn" href="api-request.html">Request Access</a>
     </div>
   </div>
-</header>
 
-<section class="hero">
-  <h2>Grow Your Business with NearX</h2>
-  <p>Local Store Listing + AI CRM Automation + API Access — all in one platform.</p>
-</section>
-
-<div class="cards">
-
-  <!-- Stores Module -->
-  <div class="card">
-    <h3>🛍️ List Your Store</h3>
-    <p>Add your shop to NearX, show products, and get customer orders on WhatsApp instantly.</p>
-    <a href="shops.html" class="btn">Go to Store Module</a>
-  </div>
-
-  <!-- CRM Module -->
-  <div class="card">
-    <h3>🤖 AI CRM Automation</h3>
-    <p>Automated follow-ups, reminders, lead management & daily reports for service businesses.</p>
-    <a href="crm.html" class="btn">Go to CRM Module</a>
-  </div>
-
-  <!-- API Module (FIXED LINK) -->
-  <div class="card">
-    <h3>⚙️ Request API Access</h3>
-    <p>Integrate NearX data and functions directly into your existing software or custom apps.</p>
-    <a href="api.html" class="btn">Request Access</a>
-  </div>
-
+  <footer>© <span id="year"></span> NearX — All Rights Reserved.</footer>
 </div>
 
-<footer>
-  © <span id="year"></span> NearX — All Rights Reserved.
-</footer>
-
-<script>
-document.getElementById("year").innerText = new Date().getFullYear();
-</script>
-
+<script>document.getElementById("year").innerText = new Date().getFullYear();</script>
 </body>
 </html>
