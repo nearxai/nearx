@@ -13,41 +13,91 @@
     background: #f6f7fb;
     color: #111;
   }
-  .wrap { max-width: 900px; margin: 20px auto; padding: 20px; }
 
+  .wrap {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  /* HEADER */
   header {
-    display: flex; align-items: center; justify-content:space-between;
-    background: #fff; padding:14px 20px; border-radius:12px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 14px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
-  .logo-box { display:flex; align-items:center; gap:10px; }
+
+  .logo-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .logo {
-    width:42px; height:42px; border-radius:10px;
-    display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(135deg,#246BFD,#6A11CB);
-    color:#fff; font-weight:800;
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,#246BFD,#6A11CB);
+    color: #fff;
+    font-weight: 800;
+    font-size: 18px;
   }
+
+  /* HERO */
   .hero {
-    background:linear-gradient(135deg,#246BFD,#6A11CB);
-    color:#fff; padding:30px; border-radius:20px;
-    margin-top:20px;
+    background: linear-gradient(135deg,#246BFD,#6A11CB);
+    color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    margin-top: 20px;
   }
+
+  .hero h1 {
+    margin: 0 0 10px;
+  }
+
+  /* FORM BOX */
   .box {
-    background:#fff; padding:20px; margin-top:20px; border-radius:12px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+    background: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
   }
+
   input, textarea {
-    width:100%; padding:12px; margin-top:10px;
-    border-radius:10px; border:1px solid #ddd; font-size:15px;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
   }
+
   button {
-    margin-top:12px; width:100%; padding:12px;
-    background:linear-gradient(135deg,#246BFD,#6A11CB);
-    border:0; border-radius:10px; color:#fff;
-    font-size:16px; font-weight:600; cursor:pointer;
+    margin-top: 12px;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg,#246BFD,#6A11CB);
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
   }
+
   footer {
-    text-align:center; margin-top:30px; color:#777; padding-bottom:20px;
+    text-align: center;
+    margin-top: 30px;
+    color: #777;
+    padding-bottom: 20px;
   }
 </style>
 </head>
@@ -63,29 +113,38 @@
       <small style="color:#666">API Platform</small>
     </div>
   </div>
-  <a href="index.html" style="color:#246BFD; font-weight:600;">Home</a>
+
+  <a href="index.html"
+     style="color:#246BFD; font-weight:600; text-decoration:none;">
+     Home
+  </a>
 </header>
 
+<!-- HERO -->
 <div class="hero">
   <h1>NearX API Access</h1>
-  <p>Integrate store listings, catalog data, CRM automation & WhatsApp flows into apps.</p>
+  <p>Integrate store listings, catalog data, CRM automation & WhatsApp flows into your applications.</p>
 </div>
 
+<!-- FORM BOX -->
 <div class="box">
   <h2>Request API Access</h2>
-  <p>Fill this form to receive API Key + Documentation.</p>
+  <p>Fill this form to receive an API Key + Developer Documentation.</p>
 
   <form id="apiForm">
 
+    <!-- Backend identifier -->
     <input type="hidden" name="action" value="api_request">
 
     <input name="business" placeholder="Business / Developer Name" required>
     <input name="email" placeholder="Email Address" required>
     <input name="phone" placeholder="WhatsApp Number (optional)">
-    <textarea name="usecase" placeholder="Describe your use case" rows="4" required></textarea>
+    <textarea name="usecase" placeholder="Describe your use case (Required)" rows="4" required></textarea>
 
     <button type="submit">Submit Request</button>
-    <p id="msg" style="margin-top:10px; font-weight:600; display:none;"></p>
+
+    <p id="msg"
+       style="margin-top:10px; font-weight:600; display:none;"></p>
   </form>
 </div>
 
@@ -94,18 +153,24 @@
 </footer>
 
 <script>
+/* 🔗 Your Google Apps Script Web App URL */
 const API_ENDPOINT = "REPLACE_WITH_YOUR_GOOGLE_APPS_SCRIPT_URL";
 
+/* Form submission logic */
 document.getElementById("apiForm").onsubmit = async function(e){
   e.preventDefault();
 
   const msgBox = document.getElementById("msg");
   msgBox.style.display = "none";
 
+  // Collect form data
   const form = new FormData(e.target);
   let payload = {};
-  for (const [k, v] of form.entries()) payload[k] = v;
+  for (const [key, value] of form.entries()) {
+    payload[key] = value;
+  }
 
+  // If Apps Script URL not configured
   if (!API_ENDPOINT.includes("https://")) {
     msgBox.innerText = "API backend not connected — configure Apps Script URL.";
     msgBox.style.color = "red";
@@ -113,13 +178,15 @@ document.getElementById("apiForm").onsubmit = async function(e){
     return;
   }
 
-  const res = await fetch(API_ENDPOINT, {
+  // Send request to backend
+  await fetch(API_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type":"application/json" },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(payload)
   });
 
-  msgBox.innerText = "Request submitted successfully! We will contact you shortly.";
+  // Success message
+  msgBox.innerText = "Request submitted successfully. We will contact you shortly.";
   msgBox.style.color = "green";
   msgBox.style.display = "block";
 
